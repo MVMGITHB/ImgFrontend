@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../helper/Helper";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,10 +24,10 @@ const Login = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        "https://panel.gtright.in/api/admin/login",
-        { email, password }
-      );
+      const res = await axios.post(baseUrl + "/api/admin/login", {
+        email,
+        password,
+      });
 
       localStorage.setItem("token", res.data.token);
 
@@ -49,8 +50,7 @@ const Login = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background:
-          "linear-gradient(135deg, #4f46e5, #2563eb, #9333ea)",
+        background: "linear-gradient(135deg, #4f46e5, #2563eb, #9333ea)",
         padding: "20px",
       }}
     >
@@ -66,9 +66,7 @@ const Login = () => {
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "25px" }}>
-          <h1 style={{ fontSize: "28px", marginBottom: "5px" }}>
-            Admin Panel
-          </h1>
+          <h1 style={{ fontSize: "28px", marginBottom: "5px" }}>Admin Panel</h1>
           <p style={{ color: "#666", fontSize: "14px" }}>
             Sign in to access dashboard
           </p>
@@ -112,9 +110,7 @@ const Login = () => {
           </div>
 
           <div style={{ marginBottom: "20px" }}>
-            <label style={{ fontSize: "14px", color: "#555" }}>
-              Password
-            </label>
+            <label style={{ fontSize: "14px", color: "#555" }}>Password</label>
 
             <div style={{ display: "flex", marginTop: "5px" }}>
               <input
